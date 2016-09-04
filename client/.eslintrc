@@ -1,0 +1,22 @@
+{
+  "extends": "airbnb",
+  "env": {
+    "browser": true
+  },
+  "rules": {
+    "no-use-before-define": 0,
+    "no-param-reassign": 0,
+    "no-shadow": 0,
+    "no-alert": 0,
+    "comma-dangle": 0,
+    "eol-last": 0,
+    "eqeqeq": 0,
+    "quote-props": 0,
+    "default-case": 0,
+    "arrow-body-style": 0,
+    "react/prop-types": 0,
+    "react/jsx-indent": 0,
+    "jsx-a11y/label-has-for": 0,
+    "max-len": ["error", 120]
+  }
+}
