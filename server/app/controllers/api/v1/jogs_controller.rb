@@ -4,13 +4,28 @@ class Api::V1::JogsController < Api::V1::ApplicationController
   before_action :_permit_params, only: [:create, :update]
 
   def index
-    jogs = current_user.jogs
+    jogs = current_user.jogs.order(:date)
 
     if params[:filter].present?
       jogs = jogs.where(date: (params[:filter][:date_from].to_date..params[:filter][:date_to].to_date))
     end
 
     respond_with(jogs: as_api(jogs))
+  end
+
+  def progress
+    weeks = current_user.jogs
+                .group_by { |j| j.date.beginning_of_week }
+                .sort.to_h
+                .map { |key, week_jogs| {
+                    dates: "#{week_jogs.first.date.beginning_of_week} — #{week_jogs.first.date.end_of_week}",
+                    jogs_count: week_jogs.length,
+                    avg_duration: (week_jogs.map(&:duration).sum.to_f / week_jogs.length).round(2),
+                    avg_distance: (week_jogs.map(&:distance).sum.to_f / week_jogs.length).round(2),
+                    avg_speed: (week_jogs.map(&:avg_speed).sum.to_f / week_jogs.length).round(2)
+                } }
+
+    respond_with(weeks: weeks)
   end
 
   def show
@@ -24,7 +39,7 @@ class Api::V1::JogsController < Api::V1::ApplicationController
   def create
     jog = Jog.new(@jog_params)
     jog.user = current_user
-    
+
     if jog.save
       respond_with(redirect: "/jogs/#{jog.id}")
     else

@@ -46,7 +46,7 @@ const JogIndexPage = ({ jogs, manageable, remove, setupFilter, clearFilter }) =>
         ))}
         </tbody>
       </table> :
-      <div className="empty-index">No jogs created so far.</div>
+      <div className="empty-index">No jogs available.</div>
     }
 
     <Link to="/jogs/new" className="btn btn-success">

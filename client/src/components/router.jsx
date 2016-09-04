@@ -5,6 +5,7 @@ import { changePage } from '../actions';
 import App from './app/App';
 import JogIndexPage from './jogs/JogIndexPage';
 import JogShowPage from './jogs/JogShowPage';
+import JogProgressPage from './jogs/JogProgressPage';
 import JogNewPage from './jogs/JogNewPage';
 import JogEditPage from './jogs/JogEditPage';
 import UserIndexPage from './users/UserIndexPage';
@@ -22,6 +23,7 @@ export default (store) => {
       <Route path="/" component={App}>
         <IndexRedirect to="/jogs" />
         <Route path="/jogs" component={JogIndexPage} />
+        <Route path="/jogs/progress" component={JogProgressPage} />
         <Route path="/jogs/new" component={JogNewPage} />
         <Route path="/jogs/:id" component={JogShowPage} />
         <Route path="/jogs/:id/edit" component={JogEditPage} />

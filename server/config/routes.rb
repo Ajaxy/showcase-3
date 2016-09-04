@@ -6,7 +6,10 @@ Rails.application.routes.draw do
         get 'auth/facebook'
       end
 
-      resources :jogs
+      resources :jogs do
+        get 'progress', on: :collection
+      end
+
       resources :users do
         get 'jogs', on: :member
       end

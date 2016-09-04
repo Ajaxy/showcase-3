@@ -28,7 +28,7 @@ class Api::V1::UsersController < Api::V1::ApplicationController
   end
 
   def jogs
-    jogs = @user.jogs
+    jogs = @user.jogs.order(:date)
 
     if params[:filter].present?
       jogs = jogs.where(date: (params[:filter][:date_from].to_date..params[:filter][:date_to].to_date))

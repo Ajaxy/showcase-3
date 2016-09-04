@@ -39,7 +39,7 @@ const UserIndexPage = ({ users, remove }) => (
         ))}
         </tbody>
       </table> :
-      <div className="empty-index">No users created so far.</div>
+      <div className="empty-index">No users available.</div>
     }
   </div>
 );

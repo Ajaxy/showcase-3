@@ -33,6 +33,7 @@ const Header = (props) => (
         {props.user &&
         <ul className="nav navbar-nav">
           <li><Link to="/jogs" activeClassName="active">My jogs</Link></li>
+          <li><Link to="/jogs/progress" activeClassName="active">My progress</Link></li>
           {props.user.acl.can_manage_users &&
           <li><Link to="/users" activeClassName="active">Users</Link></li>
           }
