@@ -1,8 +1,8 @@
 {
-  "name": "toptal-test",
+  "name": "showcase-jogging",
   "private": true,
-  "version": "0.0.0",
-  "description": "a Sails application",
+  "version": "0.0.1",
+  "description": "Frontend for Jogging app",
   "keywords": [],
   "dependencies": {
     "immutable": "^3.8.1",
