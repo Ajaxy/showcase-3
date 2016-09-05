@@ -10,7 +10,7 @@ class Api::V1::JogsController < Api::V1::ApplicationController
       jogs = jogs.where(date: (params[:filter][:date_from].to_date..params[:filter][:date_to].to_date))
     end
 
-    respond_with(jogs: as_api(jogs))
+    respond_with(jogs: as_api(jogs), manageable: true)
   end
 
   def progress

@@ -10,7 +10,7 @@ export const index = {
         type: 'object',
         properties: {
           id: {
-            type: 'number'
+            type: 'string'
           },
           date: {
             type: 'string'
@@ -28,10 +28,42 @@ export const index = {
         required: ['id', 'date', 'duration', 'distance', 'avg_speed']
       }
     },
-    required: ['jogs']
-  }
+    manageable: {
+      type: 'boolean'
+    }
+  },
+  required: ['jogs', 'manageable']
 };
 
 export const show = {
-  
+  title: 'Result',
+  type: 'object',
+  attributes: {
+    jog: {
+      title: 'Jog info',
+      type: 'object',
+      properties: {
+        id: {
+          type: 'string'
+        },
+        date: {
+          type: 'string'
+        },
+        duration: {
+          type: 'number'
+        },
+        distance: {
+          type: 'number'
+        },
+        avg_speed: {
+          type: 'number'
+        }
+      },
+      required: ['id', 'date', 'duration', 'distance', 'avg_speed']
+    },
+    manageable: {
+      type: 'boolean'
+    }
+  },
+  required: ['jog']
 };
