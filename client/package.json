@@ -20,7 +20,7 @@
   },
   "scripts": {
     "dev": "webpack-dev-server",
-    "dist": "webpack -p",
+    "dist": "webpack -p --config webpack.production.config.js",
     "test": "mocha --compilers js:babel-core/register --require ./tests/init.test.js \"tests/**/*@(.js)\""
   },
   "main": "app.js",

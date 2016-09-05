@@ -3,8 +3,6 @@ const webpack = require('webpack');
 module.exports = {
   entry: {
     app: [
-      'webpack-dev-server/client?http://localhost:8080',
-      'webpack/hot/only-dev-server',
       './src/index'
     ],
     vendor: [
@@ -17,7 +15,7 @@ module.exports = {
     loaders: [{
       test: /\.jsx?$/,
       exclude: /node_modules/,
-      loader: 'react-hot!babel!eslint'
+      loader: 'babel'
     }, {
       test: /\.sass/,
       loader: 'style!css!sass'
@@ -27,16 +25,16 @@ module.exports = {
     extensions: ['', '.js', '.jsx']
   },
   output: {
-    publicPath: '/'
-  },
-  devServer: {
-    historyApiFallback: true,
-    publicPath: '/',
-    hot: true
+    path: './dist',
+    filename: 'bundle.js'
   },
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.js'),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
+    }),
+    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.js')
   ],
   devtool: 'eval'
 };
