@@ -10,7 +10,7 @@ module.exports = {
     vendor: [
       'immutable',
       'react', 'react-dom', 'react-redux', 'react-hot-api', 'react-router',
-      'redux', 'redux-thunk', 'redux-promise', 'isomorphic-fetch', 'lodash', 'qs', 'js-cookie'
+      'redux', 'redux-thunk', 'isomorphic-fetch', 'lodash', 'qs', 'js-cookie'
     ]
   },
   module: {
