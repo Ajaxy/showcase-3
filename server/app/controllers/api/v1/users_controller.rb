@@ -28,6 +28,8 @@ class Api::V1::UsersController < Api::V1::ApplicationController
   end
 
   def jogs
+    raise_error 403 unless current_user.admin?
+
     jogs = @user.jogs.order(:date)
 
     if params[:filter].present?

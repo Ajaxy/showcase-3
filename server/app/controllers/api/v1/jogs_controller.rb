@@ -1,6 +1,6 @@
 class Api::V1::JogsController < Api::V1::ApplicationController
   before_action :_find, only: [:show, :edit, :update, :destroy]
-  before_filter :_check_access, only: [:edit, :update, :destroy]
+  before_filter :_check_access, only: [:show, :edit, :update, :destroy]
   before_action :_permit_params, only: [:create, :update]
 
   def index
