@@ -10,6 +10,9 @@ class Jog < ActiveRecord::Base
     t.add :avg_speed
   end
 
+  validates :distance, numericality: { greater_than_or_equal_to: 0.1 }
+  validates :duration, numericality: { greater_than_or_equal_to: 1 }
+
   def avg_speed
     (distance.to_f / duration * 60).round(2)
   end
