@@ -45,5 +45,11 @@ function request(method, url, params, credentials = auth.getCredentials()) {
   return fetch(`${config.url_api}${url}`, opts)
     .then((res) => res.json())
     .catch(() => ({ error: '500: Server error' }))
-    .then((res) => (res.error ? res : res.result));
+    .then((res) => {
+      if (res.error || !res.result) {
+        return Promise.reject(res);
+      }
+
+      return res.result;
+    });
 }

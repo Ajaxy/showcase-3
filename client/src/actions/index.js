@@ -33,13 +33,15 @@ export const signInFacebook = () => (dispatch) => {
       return;
     }
 
-    api.get('/auth/facebook', { access_token: authResponse.accessToken })
-      .then((user) => {
-        auth.setCredentials(user.credentials);
-        dispatch(setUser(user));
-        page.refresh();
-      })
-      .catch((err) => dispatch(setError(err)));
+    dispatch(
+      api.get('/auth/facebook', { access_token: authResponse.accessToken })
+        .then((user) => {
+          auth.setCredentials(user.credentials);
+          page.refresh();
+
+          return setUser(user);
+        })
+    );
   });
 };
 
@@ -57,12 +59,8 @@ export const changePage = (url, query) => (dispatch) => {
   dispatch(setPageData(null));
   dispatch(setError(null));
 
-  api.get(url, query)
-    .then((pageData) => {
-      if (pageData && pageData.error) {
-        dispatch(setError(pageData.error));
-      } else if (pageData) {
-        dispatch(setPageData(pageData));
-      }
-    });
+  dispatch(
+    api.get(url, query)
+      .then((pageData) => pageData && setPageData(pageData))
+  );
 };

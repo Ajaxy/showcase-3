@@ -17,11 +17,11 @@ const store = configureStore();
 facebookSdk(config.facebook_app_id);
 
 if (auth.hasCredentials()) {
-  api.get('/auth/info')
-    .then((res) => store.dispatch(setUser(res)))
-    .catch(() => {
-    })
-    .then(render);
+  const userPromise = api.get('/auth/info')
+    .then((res) => setUser(res));
+
+  store.dispatch(userPromise);
+  userPromise.then(render);
 } else {
   render();
 }
